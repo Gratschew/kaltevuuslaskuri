@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/kaltevuuslaskuri/static/css/main.5a195dec.css",
-    "main.js": "/kaltevuuslaskuri/static/js/main.7a7f26bb.js",
+    "main.js": "/kaltevuuslaskuri/static/js/main.9022e4f7.js",
     "static/js/787.f6901487.chunk.js": "/kaltevuuslaskuri/static/js/787.f6901487.chunk.js",
     "index.html": "/kaltevuuslaskuri/index.html",
     "main.5a195dec.css.map": "/kaltevuuslaskuri/static/css/main.5a195dec.css.map",
-    "main.7a7f26bb.js.map": "/kaltevuuslaskuri/static/js/main.7a7f26bb.js.map",
+    "main.9022e4f7.js.map": "/kaltevuuslaskuri/static/js/main.9022e4f7.js.map",
     "787.f6901487.chunk.js.map": "/kaltevuuslaskuri/static/js/787.f6901487.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.5a195dec.css",
-    "static/js/main.7a7f26bb.js"
+    "static/js/main.9022e4f7.js"
   ]
 }
