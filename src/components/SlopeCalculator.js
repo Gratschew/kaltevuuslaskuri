@@ -40,6 +40,20 @@ const SlopeCalculator = () => {
           "1:" + (100 / (getTanFromDegrees(value) * 100)).toFixed(2).toString()
         );
       }
+    } else if (unitSelector == "ratio") {
+      if (value == "") {
+        setPercentage(0);
+        setRatio(0);
+        setDegree(0);
+      } else {
+        setPercentage(((1 / value) * 100).toFixed(2).toString() + "%");
+        setDegree(
+          getArcTanFromPerc((1 / value) * 100)
+            .toFixed(2)
+            .toString() + "°"
+        );
+        setRatio("1:" + value.toString());
+      }
     }
   };
   const handleUnitSelectorChange = (event) => {
@@ -69,6 +83,20 @@ const SlopeCalculator = () => {
           "1:" + (100 / (getTanFromDegrees(value) * 100)).toFixed(2).toString()
         );
       }
+    } else if (event.target.value == "ratio") {
+      if (value == "") {
+        setPercentage(0);
+        setRatio(0);
+        setDegree(0);
+      } else {
+        setPercentage(((1 / value) * 100).toFixed(2).toString() + "%");
+        setDegree(
+          getArcTanFromPerc((1 / value) * 100)
+            .toFixed(2)
+            .toString() + "°"
+        );
+        setRatio("1:" + value.toString());
+      }
     }
   };
   return (
@@ -91,7 +119,7 @@ const SlopeCalculator = () => {
     >
       <h1
         style={{
-          fontSize: "2vw",
+          fontSize: "25px",
           fontWeight: "bold",
           color: "white",
         }}
@@ -135,19 +163,35 @@ const SlopeCalculator = () => {
               marginLeft: 10,
             }}
           >
-            <div>
-              <input
-                style={{
-                  width: 40,
-                  height: 30,
-                  borderWidth: 0,
-                  borderTopLeftRadius: 5,
-                  borderBottomLeftRadius: 5,
-                }}
-                onChange={(e) => {
-                  handleInputChange(e.target.value);
-                }}
-              ></input>
+            <div style={{ display: "flex", flexDirection: "row" }}>
+              <div style={{ position: "relative" }}>
+                {unitSelector === "ratio" && (
+                  <span
+                    style={{
+                      position: "absolute",
+                      left: "8px",
+                      top: 4,
+                      color: "gray",
+                    }}
+                  >
+                    {"1: "}
+                  </span>
+                )}
+                <input
+                  style={{
+                    width: 50,
+                    height: 30,
+                    borderWidth: 0,
+                    borderTopLeftRadius: 5,
+                    borderBottomLeftRadius: 5,
+                    paddingLeft: 20,
+                    fontSize: 15,
+                  }}
+                  onChange={(e) => {
+                    handleInputChange(e.target.value);
+                  }}
+                ></input>
+              </div>
               <select
                 value={unitSelector}
                 onChange={handleUnitSelectorChange}
@@ -162,6 +206,7 @@ const SlopeCalculator = () => {
                 }}
               >
                 <option value="degree">°</option>
+                <option value="ratio">Suhde</option>
                 <option value="percentage">%</option>
               </select>
             </div>
@@ -176,12 +221,27 @@ const SlopeCalculator = () => {
           }}
         >
           <p style={{ fontWeight: "bold", marginLeft: 5 }}>
-            Lasket {unitSelector == "degree" ? "asteilla" : "prosenteilla"}!
+            Lasket{" "}
+            {unitSelector == "degree"
+              ? "asteilla"
+              : unitSelector == "ratio"
+              ? "kattokaltevuudella"
+              : "prosenteilla"}
+            !
           </p>
         </div>
         <div
           style={{
-            marginTop: 10,
+            fontSize: 20,
+            display: "flex",
+            flexDirection: "row",
+          }}
+        >
+          <p> Kaltevuus asteissa: </p>
+          <p style={{ fontWeight: "bold", marginLeft: 5 }}> {degree}</p>
+        </div>
+        <div
+          style={{
             fontSize: 20,
             display: "flex",
             flexDirection: "row",
@@ -192,7 +252,6 @@ const SlopeCalculator = () => {
         </div>
         <div
           style={{
-            marginTop: 0,
             fontSize: 20,
             display: "flex",
             flexDirection: "row",
@@ -200,17 +259,6 @@ const SlopeCalculator = () => {
         >
           <p> Kaltevuus prosenteissa: </p>
           <p style={{ fontWeight: "bold", marginLeft: 5 }}> {percentage}</p>
-        </div>
-        <div
-          style={{
-            marginTop: 0,
-            fontSize: 20,
-            display: "flex",
-            flexDirection: "row",
-          }}
-        >
-          <p> Kaltevuus asteissa: </p>
-          <p style={{ fontWeight: "bold", marginLeft: 5 }}> {degree}</p>
         </div>
       </div>
     </div>
